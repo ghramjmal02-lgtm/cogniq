@@ -1,0 +1,184 @@
+{
+  "@@locale": "ar",
+  "appTitle": "Cogniq",
+  "settingsTitle": "الإعدادات ⚙",
+  "yourInfo": "👤 معلوماتك",
+  "name": "الاسم",
+  "studyYear": "السنة الدراسية",
+  "waterGoalTitle": "💧 هدف الماء اليومي",
+  "cupsEqualsMl": "{cups} كوب = {ml} مل",
+  "@cupsEqualsMl": {
+    "placeholders": {
+      "cups": {"type": "int"},
+      "ml": {"type": "int"}
+    }
+  },
+  "liters": "{liters} لتر",
+  "@liters": {
+    "placeholders": {
+      "liters": {"type": "String"}
+    }
+  },
+  "appearance": "🎨 المظهر",
+  "darkMode": "الوضع الداكن 🌙",
+  "lightMode": "الوضع الفاتح ☀️",
+  "language": "🌐 اللغة",
+  "arabic": "العربية",
+  "english": "English",
+  "saveSettings": "حفظ الإعدادات",
+  "settingsSaved": "✅ تم حفظ الإعدادات!",
+  "resetApp": "إعادة تعيين التطبيق",
+  "resetConfirmMessage": "هيتمسح كل البيانات وهترجع لشاشة التسجيل!\nمتأكد؟",
+  "no": "لأ",
+  "yesDelete": "أيوه، امسح",
+  "version": "الإصدار {version}",
+  "@version": {
+    "placeholders": {
+      "version": {"type": "String"}
+    }
+  },
+  "greetingMorning": "صباح الخير ☀️",
+  "greetingAfternoon": "مساء النور 🌤️",
+  "greetingEvening": "مساء الخير 🌙",
+  "defaultStudent": "طالب",
+  "cupsOfWater": "كوب ماء",
+  "sessions": "جلسات",
+  "today": "اليوم",
+  "examSchedule": "جدول",
+  "exams": "امتحانات",
+  "pomodoro": "بومودورو",
+  "focus": "تركيز",
+  "notes": "ملاحظات",
+  "recordThoughts": "سجل أفكارك",
+  "game": "لعبة",
+  "memory": "ذاكرة",
+  "water": "ماء",
+  "tracker": "متتبع",
+  "monday": "الاثنين",
+  "tuesday": "الثلاثاء",
+  "wednesday": "الأربعاء",
+  "thursday": "الخميس",
+  "friday": "الجمعة",
+  "saturday": "السبت",
+  "sunday": "الأحد",
+  "january": "يناير",
+  "february": "فبراير",
+  "march": "مارس",
+  "april": "إبريل",
+  "may": "مايو",
+  "june": "يونيو",
+  "july": "يوليو",
+  "august": "أغسطس",
+  "september": "سبتمبر",
+  "october": "أكتوبر",
+  "november": "نوفمبر",
+  "december": "ديسمبر",
+"newExam": "امتحان جديد 🗓️",
+  "subjectName": "اسم المادة",
+  "chooseDate": "اختر التاريخ",
+  "chooseColor": "اختر لون:",
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "examScheduleTitle": "جدول الامتحانات 🗓️",
+  "noExamsYet": "مفيش امتحانات لسه!\nاضغط + عشان تضيف",
+  "examEnded": "انتهى",
+  "examToday": "اليوم!",
+  "daysLeft": "{days} يوم",
+  "@daysLeft": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
+  "pomodoroTitle": "بومودورو ⏱️",
+  "fourSessionsDone": "🎉 أكملت 4 جلسات! وقت راحة طويلة ☕",
+  "sessionDoneShortBreak": "✅ جلسة مكتملة! خد راحة قصيرة 😊",
+  "breakDoneFocusTime": "🎯 انتهت الراحة! وقت التركيز",
+  "ok": "حسناً",
+  "longBreakLabel": "🛋️ راحة طويلة",
+  "breakTimeLabel": "☕ وقت الراحة",
+  "focusTimeLabel": "🎯 وقت التركيز",
+  "sessionsCompleted": "جلسة {count} مكتملة",
+  "@sessionsCompleted": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "pause": "إيقاف مؤقت",
+  "start": "ابدأ",
+  "pomodoroInfo": "{focusMin} دقيقة تركيز ← {breakMin} دقائق راحة\nبعد 4 جلسات: {longBreakMin} دقيقة راحة طويلة 🛋️",
+  "@pomodoroInfo": {
+    "placeholders": {
+      "focusMin": {"type": "int"},
+      "breakMin": {"type": "int"},
+      "longBreakMin": {"type": "int"}
+    }
+  },
+  "all": "الكل",
+  "newNote": "ملاحظة جديدة 📝",
+  "titleField": "العنوان",
+  "subjectField": "المادة",
+  "contentField": "المحتوى",
+  "saveNote": "حفظ الملاحظة",
+  "generalSubject": "عام",
+  "notesTitle": "الملاحظات 📝",
+  "noNotesYet": "مفيش ملاحظات لسه!\nاضغط + عشان تضيف",
+  "memoryGameTitle": "لعبة الذاكرة 🧠",
+  "replay": "إعادة اللعب",
+  "level": "المستوى: ",
+  "easy": "سهل",
+  "hard": "صعب",
+  "timeLabel": "⏱️ الوقت",
+  "attemptsLabel": "🎯 المحاولات",
+  "matchedLabel": "✅ المطابق",
+  "wellDone": "🏆 أحسنت!",
+  "gameFinishedStats": "إنهيت اللعبة في {moves} محاولة\nوفي {time}",
+  "@gameFinishedStats": {
+    "placeholders": {
+      "moves": {"type": "int"},
+      "time": {"type": "String"}
+    }
+  },
+  "playAgain": "العب مرة ثانية 🔄",
+  "waterTrackerTitle": "متتبع الماء 💧",
+  "settingsTooltip": "الإعدادات",
+  "resetTooltip": "إعادة تعيين",
+  "reminderTitle": "💧 تذكير!",
+  "reminderBody": "لا تنسى تشرب الماء!\nجسمك يحتاجك 💪",
+  "drankCup": "شربت كوب! ✅",
+  "later": "لاحقاً",
+  "settingsDialogTitle": "الإعدادات ⚙️",
+  "notificationsSection": "🔔 الإشعارات",
+  "waterReminderTitle": "تذكير شرب الماء",
+  "everyHour": "كل ساعة",
+  "fontSizeSection": "🔤 حجم الخط",
+  "small": "صغير",
+  "normal": "عادي",
+  "large": "كبير",
+  "languageSection": "🌍 اللغة",
+  "aboutSection": "ℹ️ عن التطبيق",
+  "appDescription": "تطبيق مساعد ذكي للطلاب يساعدهم على تنظيم دراستهم وتتبع امتحاناتهم وتحسين تركيزهم من خلال تقنية البومودورو ولعبة الذاكرة وتتبع شرب الماء.",
+  "developerLabel": "👩‍💻 المطور",
+  "typeLabel": "📱 النوع",
+  "typeValue": "تطبيق تعليمي",
+  "techLabel": "🛠️ التقنية",
+  "yearLabel": "📅 السنة",
+  "okDone": "حسنا ✅",
+  "cupsUnit": "كوب",
+  "mlOfTotal": "{ml} مل / 2000 مل",
+  "@mlOfTotal": {
+    "placeholders": {
+      "ml": {"type": "int"}
+    }
+  },
+  "goalReached": "🎉 أحسنت! وصلت لهدفك اليومي!",
+  "cupsLeftForGoal": "باقي {left} كوب لتكملة الـ 2 لتر 💪",
+  "@cupsLeftForGoal": {
+    "placeholders": {
+      "left": {"type": "int"}
+    }
+  },
+  "reminderEveryHourOn": "سيتم تذكيرك كل ساعة بشرب الماء 🔔",
+  "notificationsOff": "الإشعارات متوقفة 🔕",
+  "cupButtonLabel": "كوب",
+  "addCupButton": "أضف كوب ماء"
+}

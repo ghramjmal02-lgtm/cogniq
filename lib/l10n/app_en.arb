@@ -1,0 +1,184 @@
+{
+  "@@locale": "en",
+  "appTitle": "Cogniq",
+  "settingsTitle": "Settings ⚙️",
+  "yourInfo": "👤 Your Info",
+  "name": "Name",
+  "studyYear": "Study Year",
+  "waterGoalTitle": "💧 Daily Water Goal",
+  "cupsEqualsMl": "{cups} cups = {ml} ml",
+  "@cupsEqualsMl": {
+    "placeholders": {
+      "cups": {"type": "int"},
+      "ml": {"type": "int"}
+    }
+  },
+  "liters": "{liters} L",
+  "@liters": {
+    "placeholders": {
+      "liters": {"type": "String"}
+    }
+  },
+  "appearance": "🎨 Appearance",
+  "darkMode": "Dark Mode 🌙",
+  "lightMode": "Light Mode ☀️",
+  "language": "🌐 Language",
+  "arabic": "العربية",
+  "english": "English",
+  "saveSettings": "Save Settings",
+  "settingsSaved": "✅ Settings saved!",
+  "resetApp": "Reset App",
+  "resetConfirmMessage": "All data will be deleted and you'll return to the registration screen!\nAre you sure?",
+  "no": "No",
+  "yesDelete": "Yes, delete",
+  "version": "Version {version}",
+  "@version": {
+    "placeholders": {
+      "version": {"type": "String"}
+    }
+  },
+  "greetingMorning": "Good Morning ☀️",
+  "greetingAfternoon": "Good Afternoon 🌤️",
+  "greetingEvening": "Good Evening 🌙",
+  "defaultStudent": "Student",
+  "cupsOfWater": "cups of water",
+  "sessions": "sessions",
+  "today": "Today",
+  "examSchedule": "Schedule",
+  "exams": "Exams",
+  "pomodoro": "Pomodoro",
+  "focus": "Focus",
+  "notes": "Notes",
+  "recordThoughts": "Record your thoughts",
+  "game": "Game",
+  "memory": "Memory",
+  "water": "Water",
+  "tracker": "Tracker",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+"newExam": "New Exam 🗓️",
+  "subjectName": "Subject Name",
+  "chooseDate": "Choose Date",
+  "chooseColor": "Choose Color:",
+  "cancel": "Cancel",
+  "save": "Save",
+  "examScheduleTitle": "Exam Schedule 🗓️",
+  "noExamsYet": "No exams yet!\nTap + to add",
+  "examEnded": "Ended",
+  "examToday": "Today!",
+  "daysLeft": "{days} days",
+  "@daysLeft": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
+  "pomodoroTitle": "Pomodoro ⏱️",
+  "fourSessionsDone": "🎉 4 sessions completed! Time for a long break ☕",
+  "sessionDoneShortBreak": "✅ Session complete! Take a short break 😊",
+  "breakDoneFocusTime": "🎯 Break's over! Time to focus",
+  "ok": "OK",
+  "longBreakLabel": "🛋️ Long Break",
+  "breakTimeLabel": "☕ Break Time",
+  "focusTimeLabel": "🎯 Focus Time",
+  "sessionsCompleted": "{count} sessions completed",
+  "@sessionsCompleted": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "pause": "Pause",
+  "start": "Start",
+  "pomodoroInfo": "{focusMin} min focus ← {breakMin} min break\nAfter 4 sessions: {longBreakMin} min long break 🛋️",
+  "@pomodoroInfo": {
+    "placeholders": {
+      "focusMin": {"type": "int"},
+      "breakMin": {"type": "int"},
+      "longBreakMin": {"type": "int"}
+    }
+  },
+  "all": "All",
+  "newNote": "New Note 📝",
+  "titleField": "Title",
+  "subjectField": "Subject",
+  "contentField": "Content",
+  "saveNote": "Save Note",
+  "generalSubject": "General",
+  "notesTitle": "Notes 📝",
+  "noNotesYet": "No notes yet!\nTap + to add",
+  "memoryGameTitle": "Memory Game 🧠",
+  "replay": "Replay",
+  "level": "Level: ",
+  "easy": "Easy",
+  "hard": "Hard",
+  "timeLabel": "⏱️ Time",
+  "attemptsLabel": "🎯 Attempts",
+  "matchedLabel": "✅ Matched",
+  "wellDone": "🏆 Well done!",
+  "gameFinishedStats": "You finished in {moves} moves\nand {time}",
+  "@gameFinishedStats": {
+    "placeholders": {
+      "moves": {"type": "int"},
+      "time": {"type": "String"}
+    }
+  },
+  "playAgain": "Play Again 🔄",
+  "waterTrackerTitle": "Water Tracker 💧",
+  "settingsTooltip": "Settings",
+  "resetTooltip": "Reset",
+  "reminderTitle": "💧 Reminder!",
+  "reminderBody": "Don't forget to drink water!\nYour body needs you 💪",
+  "drankCup": "I drank a cup! ✅",
+  "later": "Later",
+  "settingsDialogTitle": "Settings ⚙️",
+  "notificationsSection": "🔔 Notifications",
+  "waterReminderTitle": "Water Reminder",
+  "everyHour": "Every hour",
+  "fontSizeSection": "🔤 Font Size",
+  "small": "Small",
+  "normal": "Normal",
+  "large": "Large",
+  "languageSection": "🌍 Language",
+  "aboutSection": "ℹ️ About the App",
+  "appDescription": "A smart student companion app that helps organize studying, track exams, and improve focus through Pomodoro technique, a memory game, and water tracking.",
+  "developerLabel": "👩‍💻 Developer",
+  "typeLabel": "📱 Type",
+  "typeValue": "Educational App",
+  "techLabel": "🛠️ Technology",
+  "yearLabel": "📅 Year",
+  "okDone": "OK ✅",
+  "cupsUnit": "cups",
+  "mlOfTotal": "{ml} ml / 2000 ml",
+  "@mlOfTotal": {
+    "placeholders": {
+      "ml": {"type": "int"}
+    }
+  },
+  "goalReached": "🎉 Great! You reached your daily goal!",
+  "cupsLeftForGoal": "{left} cups left to complete 2 liters 💪",
+  "@cupsLeftForGoal": {
+    "placeholders": {
+      "left": {"type": "int"}
+    }
+  },
+  "reminderEveryHourOn": "You'll be reminded every hour to drink water 🔔",
+  "notificationsOff": "Notifications are off 🔕",
+  "cupButtonLabel": "Cup",
+  "addCupButton": "Add a cup of water"
+}
