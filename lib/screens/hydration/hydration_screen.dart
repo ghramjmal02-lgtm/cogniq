@@ -139,7 +139,7 @@ class _HydrationScreenState extends State<HydrationScreen> {
                       ),
                       Switch(
                         value: _notificationsEnabled,
-                        activeColor: const Color(0xFF06B6D4),
+                        activeThumbColor: const Color(0xFF06B6D4),
                         onChanged: (val) {
                           setStateDialog(() => _notificationsEnabled = val);
                           setState(() => _notificationsEnabled = val);

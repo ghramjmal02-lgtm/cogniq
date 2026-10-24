@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../core/theme/app_theme.dart';
 import '../../app_root.dart';
 import '../../l10n/app_localizations.dart';
@@ -17,6 +19,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int _waterGoal = 8;
   final _nameController = TextEditingController();
   final _yearController = TextEditingController();
+  final _collegeController = TextEditingController();
+  final _majorController = TextEditingController();
 
   @override
   void initState() {
@@ -28,17 +32,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void dispose() {
     _nameController.dispose();
     _yearController.dispose();
+    _collegeController.dispose();
+    _majorController.dispose();
     super.dispose();
   }
 
   Future<void> _loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
+    String name = prefs.getString('user_name') ?? '';
+    String college = '';
+    String major = '';
+
+    // قراءة بيانات المستخدم الحالي من Firestore
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      try {
+        final doc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+        final data = doc.data();
+        if (data != null) {
+          name = (data['name'] ?? name).toString();
+          college = (data['college'] ?? '').toString();
+          major = (data['major'] ?? '').toString();
+        }
+      } catch (_) {}
+    }
+
+    if (!mounted) return;
     setState(() {
-      _userName = prefs.getString('user_name') ?? '';
+      _userName = name;
       _studyYear = prefs.getString('study_year') ?? '';
       _waterGoal = prefs.getInt('water_goal') ?? 8;
       _nameController.text = _userName;
       _yearController.text = _studyYear;
+      _collegeController.text = college;
+      _majorController.text = major;
     });
   }
 
@@ -97,6 +127,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (confirm == true) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.clear();
+      await FirebaseAuth.instance.signOut();
       if (mounted) {
         Navigator.pushReplacementNamed(context, '/onboarding');
       }
@@ -109,6 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final txtColor = scheme.onSurface;
     final bgCard = scheme.surface;
     final isDark = CogniqApp.of(context)?.isDark ?? true;
+    final isArabic = CogniqApp.of(context)?.isArabic ?? true;
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -157,6 +189,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         labelText: l10n.studyYear,
                         prefixIcon: const Icon(
                           Icons.school_rounded,
+                          color: AppTheme.primaryLight,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    // الكلية (للعرض فقط)
+                    TextField(
+                      controller: _collegeController,
+                      readOnly: true,
+                      style: TextStyle(color: txtColor),
+                      decoration: InputDecoration(
+                        labelText: isArabic ? 'الكلية' : 'College',
+                        prefixIcon: const Icon(
+                          Icons.account_balance_rounded,
+                          color: AppTheme.primaryLight,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    // التخصص (للعرض فقط)
+                    TextField(
+                      controller: _majorController,
+                      readOnly: true,
+                      style: TextStyle(color: txtColor),
+                      decoration: InputDecoration(
+                        labelText: isArabic ? 'التخصص' : 'Major',
+                        prefixIcon: const Icon(
+                          Icons.menu_book_rounded,
                           color: AppTheme.primaryLight,
                         ),
                       ),
@@ -264,7 +324,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Switch(
                       value: isDark,
                       onChanged: (_) => CogniqApp.of(context)?.toggleTheme(),
-                      activeColor: AppTheme.primary,
+                      activeThumbColor: AppTheme.primary,
                     ),
                   ],
                 ),
@@ -298,9 +358,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         const SizedBox(width: 12),
                         Text(
-                          (CogniqApp.of(context)?.isArabic ?? true)
-                              ? l10n.arabic
-                              : l10n.english,
+                          isArabic ? l10n.arabic : l10n.english,
                           style: TextStyle(
                             color: txtColor,
                             fontSize: 16,
@@ -309,10 +367,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ],
                     ),
                     Switch(
-                      value: CogniqApp.of(context)?.isArabic ?? true,
+                      value: isArabic,
                       onChanged: (value) =>
                           CogniqApp.of(context)?.setArabic(value),
-                      activeColor: AppTheme.primary,
+                      activeThumbColor: AppTheme.primary,
                     ),
                   ],
                 ),

@@ -62,7 +62,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -886,9 +889,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add a cup of water'**
   String get addCupButton;
+
+  /// No description provided for @quiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz'**
+  String get quiz;
+
+  /// No description provided for @generateQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate quiz'**
+  String get generateQuiz;
+
+  /// No description provided for @summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summary;
+
+  /// No description provided for @summarizeFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Summarize file'**
+  String get summarizeFile;
+
+  /// No description provided for @quizScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate quiz from file'**
+  String get quizScreenTitle;
+
+  /// No description provided for @choosePdfFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose PDF file'**
+  String get choosePdfFile;
+
+  /// No description provided for @noReadableText.
+  ///
+  /// In en, this message translates to:
+  /// **'No readable text found in the file'**
+  String get noReadableText;
+
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {error}'**
+  String errorOccurred(String error);
+
+  /// No description provided for @summaryResultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'File Summary'**
+  String get summaryResultTitle;
+
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
+
+  /// No description provided for @trackProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your stats'**
+  String get trackProgress;
+
+  /// No description provided for @quizzesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quizzez'**
+  String get quizzesLabel;
+
+  /// No description provided for @correctAnswersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct answers'**
+  String get correctAnswersLabel;
+
+  /// No description provided for @averageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Average'**
+  String get averageLabel;
+
+  /// No description provided for @noQuizzesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t taken any quiz yet'**
+  String get noQuizzesYet;
+
+  /// No description provided for @yourProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Progress'**
+  String get yourProgress;
+
+  /// No description provided for @quizResultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz Result'**
+  String get quizResultTitle;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
+  /// No description provided for @submitQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'submit Quiz'**
+  String get submitQuiz;
+
+  /// No description provided for @savedSummaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Summaries'**
+  String get savedSummaries;
+
+  /// No description provided for @noSummariesYet.
+  ///
+  /// In en, this message translates to:
+  /// **' no saved summaries yet'**
+  String get noSummariesYet;
+
+  /// Login screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginTitle;
+
+  /// Register screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get registerTitle;
+
+  String get fullName;
+
+  String get email;
+
+  String get password;
+
+  String get college;
+
+  String get major;
+
+  String get loginButton;
+
+  String get registerButton;
+
+  String get noAccountYet;
+
+  String get haveAccountAlready;
+
+  String get pleaseeFillAllFields;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -897,25 +1059,25 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

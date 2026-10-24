@@ -15,7 +15,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsTitle => 'الإعدادات ⚙';
 
   @override
-  String get yourInfo => '👤 معلوماتك';
+  String get yourInfo => '👤 بياناتك';
 
   @override
   String get name => 'الاسم';
@@ -58,19 +58,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get saveSettings => 'حفظ الإعدادات';
 
   @override
-  String get settingsSaved => '✅ تم حفظ الإعدادات!';
+  String get settingsSaved => '✅ تم حفظ الإعدادات بنجاح';
 
   @override
   String get resetApp => 'إعادة تعيين التطبيق';
 
   @override
-  String get resetConfirmMessage => 'هيتمسح كل البيانات وهترجع لشاشة التسجيل!\nمتأكد؟';
+  String get resetConfirmMessage =>
+      'سيتم مسح جميع البيانات والعودة إلى شاشة التسجيل\nهل أنت متأكد؟';
 
   @override
-  String get no => 'لأ';
+  String get no => 'لا';
 
   @override
-  String get yesDelete => 'أيوه، امسح';
+  String get yesDelete => 'نعم، احذف';
 
   @override
   String version(String version) {
@@ -114,19 +115,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notes => 'ملاحظات';
 
   @override
-  String get recordThoughts => 'سجل أفكارك';
+  String get recordThoughts => 'سجّل أفكارك';
 
   @override
   String get game => 'لعبة';
 
   @override
-  String get memory => 'ذاكرة';
+  String get memory => 'الذاكرة';
 
   @override
   String get water => 'ماء';
 
   @override
-  String get tracker => 'متتبع';
+  String get tracker => 'متابعة';
 
   @override
   String get monday => 'الاثنين';
@@ -192,10 +193,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get subjectName => 'اسم المادة';
 
   @override
-  String get chooseDate => 'اختر التاريخ';
+  String get chooseDate => 'اختيار التاريخ';
 
   @override
-  String get chooseColor => 'اختر لون:';
+  String get chooseColor => 'اختيار اللون:';
 
   @override
   String get cancel => 'إلغاء';
@@ -207,46 +208,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get examScheduleTitle => 'جدول الامتحانات 🗓️';
 
   @override
-  String get noExamsYet => 'مفيش امتحانات لسه!\nاضغط + عشان تضيف';
+  String get noExamsYet => 'لا توجد امتحانات بعد\nاضغط على + لإضافة امتحان';
 
   @override
   String get examEnded => 'انتهى';
 
   @override
-  String get examToday => 'اليوم!';
+  String get examToday => 'اليوم';
 
   @override
   String daysLeft(int days) {
-    return '$days يوم';
+    return '$days يوم متبقٍ';
   }
 
   @override
   String get pomodoroTitle => 'بومودورو ⏱️';
 
   @override
-  String get fourSessionsDone => '🎉 أكملت 4 جلسات! وقت راحة طويلة ☕';
+  String get fourSessionsDone =>
+      '🎉 لقد أكملت أربع جلسات، حان وقت الاستراحة الطويلة ☕';
 
   @override
-  String get sessionDoneShortBreak => '✅ جلسة مكتملة! خد راحة قصيرة 😊';
+  String get sessionDoneShortBreak => '✅ اكتملت الجلسة، خذ استراحة قصيرة 😊';
 
   @override
-  String get breakDoneFocusTime => '🎯 انتهت الراحة! وقت التركيز';
+  String get breakDoneFocusTime => '🎯 انتهت الاستراحة، حان وقت التركيز';
 
   @override
   String get ok => 'حسناً';
 
   @override
-  String get longBreakLabel => '🛋️ راحة طويلة';
+  String get longBreakLabel => '🛋️ استراحة طويلة';
 
   @override
-  String get breakTimeLabel => '☕ وقت الراحة';
+  String get breakTimeLabel => '☕ وقت الاستراحة';
 
   @override
   String get focusTimeLabel => '🎯 وقت التركيز';
 
   @override
   String sessionsCompleted(int count) {
-    return 'جلسة $count مكتملة';
+    return 'اكتملت الجلسة رقم $count';
   }
 
   @override
@@ -257,7 +259,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String pomodoroInfo(int focusMin, int breakMin, int longBreakMin) {
-    return '$focusMin دقيقة تركيز ← $breakMin دقائق راحة\nبعد 4 جلسات: $longBreakMin دقيقة راحة طويلة 🛋️';
+    return '$focusMin دقيقة تركيز ← $breakMin دقائق استراحة\nبعد أربع جلسات: $longBreakMin دقيقة استراحة طويلة 🛋️';
   }
 
   @override
@@ -285,7 +287,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notesTitle => 'الملاحظات 📝';
 
   @override
-  String get noNotesYet => 'مفيش ملاحظات لسه!\nاضغط + عشان تضيف';
+  String get noNotesYet => 'لا توجد ملاحظات بعد\nاضغط على + لإضافة ملاحظة';
 
   @override
   String get memoryGameTitle => 'لعبة الذاكرة 🧠';
@@ -309,21 +311,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get attemptsLabel => '🎯 المحاولات';
 
   @override
-  String get matchedLabel => '✅ المطابق';
+  String get matchedLabel => '✅ المتطابق';
 
   @override
   String get wellDone => '🏆 أحسنت!';
 
   @override
   String gameFinishedStats(int moves, String time) {
-    return 'إنهيت اللعبة في $moves محاولة\nوفي $time';
+    return 'أنهيت اللعبة في $moves محاولة\nخلال $time';
   }
 
   @override
-  String get playAgain => 'العب مرة ثانية 🔄';
+  String get playAgain => 'العب مرة أخرى 🔄';
 
   @override
-  String get waterTrackerTitle => 'متتبع الماء 💧';
+  String get waterTrackerTitle => 'متابعة شرب الماء 💧';
 
   @override
   String get settingsTooltip => 'الإعدادات';
@@ -335,10 +337,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reminderTitle => '💧 تذكير!';
 
   @override
-  String get reminderBody => 'لا تنسى تشرب الماء!\nجسمك يحتاجك 💪';
+  String get reminderBody => 'لا تنسَ شرب الماء\nجسمك بحاجة إليك 💪';
 
   @override
-  String get drankCup => 'شربت كوب! ✅';
+  String get drankCup => 'تم شرب كوب ✅';
 
   @override
   String get later => 'لاحقاً';
@@ -371,13 +373,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get languageSection => '🌍 اللغة';
 
   @override
-  String get aboutSection => 'ℹ️ عن التطبيق';
+  String get aboutSection => 'ℹ️ حول التطبيق';
 
   @override
-  String get appDescription => 'تطبيق مساعد ذكي للطلاب يساعدهم على تنظيم دراستهم وتتبع امتحاناتهم وتحسين تركيزهم من خلال تقنية البومودورو ولعبة الذاكرة وتتبع شرب الماء.';
+  String get appDescription =>
+      'تطبيق مساعد ذكي للطلاب يساعدهم على تنظيم دراستهم، ومتابعة امتحاناتهم، وتحسين تركيزهم من خلال تقنية البومودورو، ولعبة الذاكرة، ومتابعة شرب الماء.';
 
   @override
-  String get developerLabel => '👩‍💻 المطور';
+  String get developerLabel => '👩‍💻 المطورة';
 
   @override
   String get typeLabel => '📱 النوع';
@@ -392,7 +395,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get yearLabel => '📅 السنة';
 
   @override
-  String get okDone => 'حسنا ✅';
+  String get okDone => 'حسناً ✅';
 
   @override
   String get cupsUnit => 'كوب';
@@ -403,11 +406,11 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get goalReached => '🎉 أحسنت! وصلت لهدفك اليومي!';
+  String get goalReached => '🎉 أحسنت! لقد بلغت هدفك اليومي';
 
   @override
   String cupsLeftForGoal(int left) {
-    return 'باقي $left كوب لتكملة الـ 2 لتر 💪';
+    return 'تبقّى $left كوب لإكمال اللترين 💪';
   }
 
   @override
@@ -420,5 +423,105 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cupButtonLabel => 'كوب';
 
   @override
-  String get addCupButton => 'أضف كوب ماء';
+  String get addCupButton => 'إضافة كوب ماء';
+
+  @override
+  String get quiz => 'اختبار';
+
+  @override
+  String get generateQuiz => 'توليد اختبار';
+
+  @override
+  String get summary => 'تلخيص';
+
+  @override
+  String get summarizeFile => 'تلخيص الملف';
+
+  @override
+  String get quizScreenTitle => 'توليد اختبار من ملف';
+
+  @override
+  String get choosePdfFile => 'اختيار ملف PDF';
+
+  @override
+  String get noReadableText => 'لم يُعثر على نص قابل للقراءة في الملف';
+
+  @override
+  String errorOccurred(String error) {
+    return 'حدث خطأ: $error';
+  }
+
+  @override
+  String get summaryResultTitle => 'ملخص الملف';
+
+  @override
+  String get progress => 'تقدمك';
+
+  @override
+  String get trackProgress => 'إحصائياتك';
+
+  @override
+  String get quizzesLabel => 'الاختبارات';
+
+  @override
+  String get correctAnswersLabel => 'الإجابات الصحيحة';
+
+  @override
+  String get averageLabel => 'المعدل';
+
+  @override
+  String get noQuizzesYet => 'لم تقم بأي اختبار بعد';
+
+  @override
+  String get yourProgress => 'تقدمك';
+
+  @override
+  String get quizResultTitle => 'نتيجة الاختبار';
+
+  @override
+  String get exit => 'خروج';
+
+  @override
+  String get submitQuiz => 'إرسال الاختبار';
+
+  @override
+  String get savedSummaries => 'التلخيصات المحفوظة';
+
+  @override
+  String get noSummariesYet => 'لا توجد تلخيصات  محفوظة بعد';
+  @override
+  String get loginTitle => 'تسجيل الدخول';
+
+  @override
+  String get registerTitle => 'إنشاء حساب';
+
+  @override
+  String get fullName => 'الاسم الكامل';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get college => 'الكلية';
+
+  @override
+  String get major => 'التخصص';
+
+  @override
+  String get loginButton => 'دخول';
+
+  @override
+  String get registerButton => 'ابدأ رحلتك';
+
+  @override
+  String get noAccountYet => 'ليس لديك حساب؟ سجّل الآن';
+
+  @override
+  String get haveAccountAlready => 'لديك حساب بالفعل؟ سجّل الدخول';
+
+  @override
+  String get pleaseeFillAllFields => 'يرجى ملء جميع البيانات';
 }

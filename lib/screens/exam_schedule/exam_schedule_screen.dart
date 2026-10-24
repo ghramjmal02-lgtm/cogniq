@@ -13,6 +13,7 @@ class ExamScheduleScreen extends StatefulWidget {
 
 class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
   List<Exam> _exams = [];
+  List<Map<String, dynamic>> _colleges = [];
 
   final List<Color> _colors = [
     const Color(0xFF3B82F6),
@@ -23,12 +24,11 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
     const Color(0xFFEC4899),
   ];
 
-  int _selectedColor = 0xFF3B82F6;
-
   @override
   void initState() {
     super.initState();
     _loadExams();
+    _loadColleges();
   }
 
   Future<void> _loadExams() async {
@@ -38,17 +38,33 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
     });
   }
 
+  Future<void> _loadColleges() async {
+    final data = await DBHelper.instance.getColleges();
+    setState(() {
+      _colleges = data;
+    });
+  }
+
   int _daysLeft(String date) {
     final examDate = DateTime.parse(date);
     final now = DateTime.now();
     return examDate.difference(DateTime(now.year, now.month, now.day)).inDays;
   }
 
+  String _getCollegeName(int? collegeId) {
+    if (collegeId == null) return '';
+    final match = _colleges.where((c) => c['id'] == collegeId);
+    if (match.isEmpty) return '';
+    return match.first['name'];
+  }
+
   Future<void> _addExam() async {
     final l10n = AppLocalizations.of(context)!;
     final subjectController = TextEditingController();
     DateTime? selectedDate;
-    int pickedColor = _colors[0].value;
+    int pickedColor = _colors[0].toARGB32();
+    int? selectedCollegeId =
+        _colleges.isNotEmpty ? _colleges[0]['id'] as int : null;
 
     await showDialog(
       context: context,
@@ -80,6 +96,32 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
+
+                // Dropdown اختيار الكلية
+                DropdownButtonFormField<int>(
+                  initialValue: selectedCollegeId,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.school_rounded,
+                        color: AppTheme.primaryLight),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  items: _colleges.map((college) {
+                    return DropdownMenuItem<int>(
+                      value: college['id'] as int,
+                      child: Text(
+                        college['name'],
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setStateDialog(() => selectedCollegeId = value);
+                  },
+                ),
+                const SizedBox(height: 16),
+
                 GestureDetector(
                   onTap: () async {
                     final picked = await showDatePicker(
@@ -123,10 +165,10 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: _colors.map((color) {
-                    final isSelected = pickedColor == color.value;
+                    final isSelected = pickedColor == color.toARGB32();
                     return GestureDetector(
                       onTap: () =>
-                          setStateDialog(() => pickedColor = color.value),
+                          setStateDialog(() => pickedColor = color.toARGB32()),
                       child: Container(
                         width: 32,
                         height: 32,
@@ -162,8 +204,14 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
                   date:
                       '${selectedDate!.year}-${selectedDate!.month.toString().padLeft(2, '0')}-${selectedDate!.day.toString().padLeft(2, '0')}',
                   color: pickedColor,
+                  collegeId: selectedCollegeId,
                 );
-                await DBHelper.instance.insertExam(exam.toMap());
+                try {
+                  final id = await DBHelper.instance.insertExam(exam.toMap());
+                  print('Inserted exam with ID: $id');
+                } catch (e) {
+                  print('Error inserting exam: $e');
+                }
                 if (context.mounted) Navigator.pop(context);
                 await _loadExams();
               },
@@ -221,6 +269,7 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
                   final exam = _exams[i];
                   final color = Color(exam.color);
                   final days = _daysLeft(exam.date);
+                  final collegeName = _getCollegeName(exam.collegeId);
 
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
@@ -262,6 +311,17 @@ class _ExamScheduleScreenState extends State<ExamScheduleScreen> {
                                   fontSize: 13,
                                 ),
                               ),
+                              if (collegeName.isNotEmpty) ...[
+                                const SizedBox(height: 2),
+                                Text(
+                                  collegeName,
+                                  style: TextStyle(
+                                    color: color,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
                             ],
                           ),
                         ),

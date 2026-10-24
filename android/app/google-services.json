@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "346226666522",
+    "project_id": "cogniq-25cbb",
+    "storage_bucket": "cogniq-25cbb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346226666522:android:0a6082a38223fafc1f75a3",
+        "android_client_info": {
+          "package_name": "com.example.cogniq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsFJatLMUTaxj9xCDG2ZwjqCVk8bEE4S8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

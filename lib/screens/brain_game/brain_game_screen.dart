@@ -23,7 +23,6 @@ class _BrainGameScreenState extends State<BrainGameScreen> {
   int _seconds = 0;
   Timer? _timer;
   bool _gameStarted = false;
-  bool _gameWon = false;
 
   final List<String> _emojis = [
     '🧠',
@@ -77,7 +76,6 @@ class _BrainGameScreenState extends State<BrainGameScreen> {
     _moves = 0;
     _seconds = 0;
     _gameStarted = false;
-    _gameWon = false;
     _timer?.cancel();
   }
 
@@ -117,7 +115,6 @@ class _BrainGameScreenState extends State<BrainGameScreen> {
 
           if (_matched.every((m) => m)) {
             _timer?.cancel();
-            _gameWon = true;
             _showWinDialog();
           }
         } else {

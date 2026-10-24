@@ -1,8 +1,12 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/constants/app_constants.dart';
 import '../../l10n/app_localizations.dart';
+import '../../services/pomodoro_task_handler.dart';
 
 class PomodoroScreen extends StatefulWidget {
   const PomodoroScreen({super.key});
@@ -17,59 +21,206 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   bool _isBreak = false;
   bool _isLongBreak = false;
   int _sessions = 0;
-  Timer? _timer;
+  Timer? _uiTimer;
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   static const int _longBreakMinutes = 15;
+
+  static const _kEndTime = 'pomodoro_end_time';
+  static const _kIsBreak = 'pomodoro_is_break';
+  static const _kIsLongBreak = 'pomodoro_is_long_break';
+  static const _kSessions = 'pomodoro_sessions';
+  static const _kIsRunning = 'pomodoro_is_running';
 
   @override
   void initState() {
     super.initState();
     _seconds = AppConstants.pomodoroMinutes * 60;
+    _initForegroundTask();
+    _restoreState();
+  }
+
+  void _initForegroundTask() {
+    FlutterForegroundTask.init(
+      androidNotificationOptions: AndroidNotificationOptions(
+        channelId: 'pomodoro_channel_v2',
+        channelName: 'مؤقت البومودورو',
+        channelDescription: 'إشعار مؤقت التركيز',
+        onlyAlertOnce: true,
+        priority: NotificationPriority.HIGH,
+        playSound: true,
+      ),
+      iosNotificationOptions: const IOSNotificationOptions(),
+      foregroundTaskOptions: ForegroundTaskOptions(
+        eventAction: ForegroundTaskEventAction.repeat(1000),
+        autoRunOnBoot: false,
+        allowWakeLock: true,
+        allowWifiLock: false,
+      ),
+    );
+
+    FlutterForegroundTask.addTaskDataCallback(_onTaskData);
+  }
+
+  void _onTaskData(Object data) {
+    if (data is int && mounted) {
+      setState(() {
+        _seconds = data;
+        if (_seconds <= 0) {
+          _isRunning = false;
+        }
+      });
+    }
+  }
+
+  Future<void> _restoreState() async {
+    final prefs = await SharedPreferences.getInstance();
+    final endTimeMillis = prefs.getInt(_kEndTime);
+    final wasRunning = prefs.getBool(_kIsRunning) ?? false;
+
+    _isBreak = prefs.getBool(_kIsBreak) ?? false;
+    _isLongBreak = prefs.getBool(_kIsLongBreak) ?? false;
+    _sessions = prefs.getInt(_kSessions) ?? 0;
+
+    if (wasRunning && endTimeMillis != null) {
+      final remaining =
+          ((endTimeMillis - DateTime.now().millisecondsSinceEpoch) / 1000)
+              .round();
+      if (remaining > 0) {
+        setState(() {
+          _seconds = remaining;
+          _isRunning = true;
+        });
+        _startUiTicker();
+        FlutterForegroundTask.saveData(key: 'finishNotified', value: false);
+        return;
+      } else {
+        // الوقت خلص وانت خارج التطبيق
+        await _finishCycleFromBackground(prefs);
+      }
+    }
+    setState(() {
+      _seconds = _isBreak
+          ? AppConstants.breakMinutes * 60
+          : _isLongBreak
+              ? _longBreakMinutes * 60
+              : AppConstants.pomodoroMinutes * 60;
+    });
+  }
+
+  Future<void> _finishCycleFromBackground(SharedPreferences prefs) async {
+    if (!_isBreak && !_isLongBreak) {
+      _sessions++;
+      if (_sessions % 4 == 0) {
+        _isLongBreak = true;
+        _isBreak = false;
+      } else {
+        _isBreak = true;
+        _isLongBreak = false;
+      }
+    } else {
+      _isBreak = false;
+      _isLongBreak = false;
+    }
+    await prefs.setBool(_kIsRunning, false);
+    await prefs.setInt(_kSessions, _sessions);
+    await prefs.setBool(_kIsBreak, _isBreak);
+    await prefs.setBool(_kIsLongBreak, _isLongBreak);
+  }
+
+  void _startUiTicker() {
+    _uiTimer?.cancel();
+    _uiTimer = Timer.periodic(const Duration(seconds: 1), (_) async {
+      if (_seconds > 0) {
+        setState(() => _seconds--);
+      } else {
+        _uiTimer?.cancel();
+        await _completeCycle();
+      }
+    });
+  }
+
+  Future<void> _completeCycle() async {
+    await _audioPlayer.play(AssetSource('sounds/alarm.mp3'));
+    final l10n = AppLocalizations.of(context)!;
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      _isRunning = false;
+      if (!_isBreak && !_isLongBreak) {
+        _sessions++;
+        if (_sessions % 4 == 0) {
+          _isLongBreak = true;
+          _isBreak = false;
+          _seconds = _longBreakMinutes * 60;
+          _showSessionDoneDialog(l10n.fourSessionsDone);
+        } else {
+          _isBreak = true;
+          _isLongBreak = false;
+          _seconds = AppConstants.breakMinutes * 60;
+          _showSessionDoneDialog(l10n.sessionDoneShortBreak);
+        }
+      } else {
+        _isBreak = false;
+        _isLongBreak = false;
+        _seconds = AppConstants.pomodoroMinutes * 60;
+        _showSessionDoneDialog(l10n.breakDoneFocusTime);
+      }
+    });
+
+    await prefs.setBool(_kIsRunning, false);
+    await prefs.setInt(_kSessions, _sessions);
+    await prefs.setBool(_kIsBreak, _isBreak);
+    await prefs.setBool(_kIsLongBreak, _isLongBreak);
+    await FlutterForegroundTask.stopService();
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _uiTimer?.cancel();
+    _audioPlayer.dispose();
+    FlutterForegroundTask.removeTaskDataCallback(_onTaskData);
     super.dispose();
   }
 
-  void _startPause() {
-    final l10n = AppLocalizations.of(context)!;
+  Future<void> _startPause() async {
+    final prefs = await SharedPreferences.getInstance();
+
     if (_isRunning) {
-      _timer?.cancel();
+      // إيقاف مؤقت
+      _uiTimer?.cancel();
+      await FlutterForegroundTask.stopService();
+      await prefs.setBool(_kIsRunning, false);
       setState(() => _isRunning = false);
     } else {
+      final endTime = DateTime.now()
+          .add(Duration(seconds: _seconds))
+          .millisecondsSinceEpoch;
+      await prefs.setInt(_kEndTime, endTime);
+      await prefs.setBool(_kIsRunning, true);
+      await prefs.setBool(_kIsBreak, _isBreak);
+      await prefs.setBool(_kIsLongBreak, _isLongBreak);
+      await prefs.setInt(_kSessions, _sessions);
+
       setState(() => _isRunning = true);
-      _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-        if (_seconds > 0) {
-          setState(() => _seconds--);
-        } else {
-          _timer?.cancel();
-          setState(() {
-            _isRunning = false;
-            if (!_isBreak && !_isLongBreak) {
-              _sessions++;
-              if (_sessions % 4 == 0) {
-                // راحة طويلة بعد 4 جلسات
-                _isLongBreak = true;
-                _isBreak = false;
-                _seconds = _longBreakMinutes * 60;
-                _showSessionDoneDialog(l10n.fourSessionsDone);
-              } else {
-                _isBreak = true;
-                _isLongBreak = false;
-                _seconds = AppConstants.breakMinutes * 60;
-                _showSessionDoneDialog(l10n.sessionDoneShortBreak);
-              }
-            } else {
-              _isBreak = false;
-              _isLongBreak = false;
-              _seconds = AppConstants.pomodoroMinutes * 60;
-              _showSessionDoneDialog(l10n.breakDoneFocusTime);
-            }
-          });
-        }
-      });
+
+      FlutterForegroundTask.saveData(key: 'endTimeMillis', value: endTime);
+      FlutterForegroundTask.saveData(
+        key: 'label',
+        value: _isLongBreak
+            ? 'راحة طويلة'
+            : _isBreak
+                ? 'راحة'
+                : 'وقت التركيز',
+      );
+
+      await FlutterForegroundTask.startService(
+        notificationTitle: _isBreak || _isLongBreak ? 'راحة' : 'وقت التركيز',
+        notificationText: _timeString,
+        callback: startCallback,
+      );
+
+      _startUiTicker();
     }
   }
 
@@ -101,8 +252,11 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
     );
   }
 
-  void _reset() {
-    _timer?.cancel();
+  Future<void> _reset() async {
+    _uiTimer?.cancel();
+    await FlutterForegroundTask.stopService();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_kIsRunning, false);
     setState(() {
       _isRunning = false;
       _isBreak = false;

@@ -64,7 +64,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resetApp => 'Reset App';
 
   @override
-  String get resetConfirmMessage => 'All data will be deleted and you\'ll return to the registration screen!\nAre you sure?';
+  String get resetConfirmMessage =>
+      'All data will be deleted and you\'ll return to the registration screen!\nAre you sure?';
 
   @override
   String get no => 'No';
@@ -224,10 +225,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pomodoroTitle => 'Pomodoro ⏱️';
 
   @override
-  String get fourSessionsDone => '🎉 4 sessions completed! Time for a long break ☕';
+  String get fourSessionsDone =>
+      '🎉 4 sessions completed! Time for a long break ☕';
 
   @override
-  String get sessionDoneShortBreak => '✅ Session complete! Take a short break 😊';
+  String get sessionDoneShortBreak =>
+      '✅ Session complete! Take a short break 😊';
 
   @override
   String get breakDoneFocusTime => '🎯 Break\'s over! Time to focus';
@@ -335,7 +338,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reminderTitle => '💧 Reminder!';
 
   @override
-  String get reminderBody => 'Don\'t forget to drink water!\nYour body needs you 💪';
+  String get reminderBody =>
+      'Don\'t forget to drink water!\nYour body needs you 💪';
 
   @override
   String get drankCup => 'I drank a cup! ✅';
@@ -374,7 +378,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutSection => 'ℹ️ About the App';
 
   @override
-  String get appDescription => 'A smart student companion app that helps organize studying, track exams, and improve focus through Pomodoro technique, a memory game, and water tracking.';
+  String get appDescription =>
+      'A smart student companion app that helps organize studying, track exams, and improve focus through Pomodoro technique, a memory game, and water tracking.';
 
   @override
   String get developerLabel => '👩‍💻 Developer';
@@ -411,7 +416,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get reminderEveryHourOn => 'You\'ll be reminded every hour to drink water 🔔';
+  String get reminderEveryHourOn =>
+      'You\'ll be reminded every hour to drink water 🔔';
 
   @override
   String get notificationsOff => 'Notifications are off 🔕';
@@ -421,4 +427,104 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addCupButton => 'Add a cup of water';
+
+  @override
+  String get quiz => 'Quiz';
+
+  @override
+  String get generateQuiz => 'Generate quiz';
+
+  @override
+  String get summary => 'Summary';
+
+  @override
+  String get summarizeFile => 'Summarize file';
+
+  @override
+  String get quizScreenTitle => 'Generate quiz from file';
+
+  @override
+  String get choosePdfFile => 'Choose PDF file';
+
+  @override
+  String get noReadableText => 'No readable text found in the file';
+
+  @override
+  String errorOccurred(String error) {
+    return 'Error: $error';
+  }
+
+  @override
+  String get summaryResultTitle => 'File Summary';
+
+  @override
+  String get progress => 'Progress';
+
+  @override
+  String get trackProgress => 'Your stats';
+
+  @override
+  String get quizzesLabel => 'Quizzez';
+
+  @override
+  String get correctAnswersLabel => 'Correct answers';
+
+  @override
+  String get averageLabel => 'Average';
+
+  @override
+  String get noQuizzesYet => 'You haven\'t taken any quiz yet';
+
+  @override
+  String get yourProgress => 'Your Progress';
+
+  @override
+  String get quizResultTitle => 'Quiz Result';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get submitQuiz => 'submit Quiz';
+
+  @override
+  String get savedSummaries => 'Saved Summaries';
+
+  @override
+  String get noSummariesYet => ' no saved summaries yet';
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get registerTitle => 'Create Account';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get college => 'College';
+
+  @override
+  String get major => 'Major';
+
+  @override
+  String get loginButton => 'Login';
+
+  @override
+  String get registerButton => 'Start Your Journey';
+
+  @override
+  String get noAccountYet => "Don't have an account? Register now";
+
+  @override
+  String get haveAccountAlready => 'Already have an account? Login';
+
+  @override
+  String get pleaseeFillAllFields => 'Please fill in all fields';
 }

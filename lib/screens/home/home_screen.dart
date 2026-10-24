@@ -1,3 +1,7 @@
+import '../../services/auth_service.dart';
+import '../progress/progress_screen.dart';
+import '../summary/summary_screen.dart';
+import '../quiz/quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/app_constants.dart';
@@ -19,9 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
   String _userName = '';
-  String _studyYear = '';
   String _quote = '';
   int _waterCups = 0;
   int _pomodoroSessions = 0;
@@ -32,6 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
     const NotesScreen(),
     const BrainGameScreen(),
     const HydrationScreen(),
+    const QuizScreen(),
+    const SummaryScreen(),
+    const ProgressScreen(),
   ];
 
   @override
@@ -42,18 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadData() async {
     final prefs = await SharedPreferences.getInstance();
+    final userData = await AuthService.getUserData();
     setState(() {
-      _userName = prefs.getString('user_name') ?? '';
-      _studyYear = prefs.getString('study_year') ?? '';
+      _userName = userData?['name'] ?? prefs.getString('user_name') ?? '';
       _waterCups = prefs.getInt('water_cups') ?? 0;
       _pomodoroSessions = prefs.getInt('pomodoro_sessions') ?? 0;
     });
-  }
-
-  void _loadQuote() {
-    final quotes = AppConstants.motivationalQuotes;
-    final random = DateTime.now().millisecondsSinceEpoch % quotes.length;
-    setState(() => _quote = quotes[random]);
   }
 
   String _getGreeting(AppLocalizations l10n) {
@@ -156,6 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         () => CogniqApp.of(context)?.toggleTheme(),
                         isDark ? Colors.amber : Colors.indigo,
                         bgColor),
+                    const SizedBox(width: 8),
+                    _buildIconButton(Icons.logout_rounded,
+                        () => AuthService.logout(), Colors.redAccent, bgColor),
                   ],
                 ),
               ],
@@ -174,10 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
             GridView.count(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 5,
+              crossAxisCount: 3,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1.2,
+              childAspectRatio: 1.0,
               children: [
                 _buildToolCard(Icons.calendar_today_rounded, l10n.examSchedule,
                     l10n.exams, const Color(0xFF3B82F6), 1),
@@ -189,6 +191,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Color(0xFF8B5CF6), 4),
                 _buildToolCard(Icons.water_drop_rounded, l10n.water,
                     l10n.tracker, const Color(0xFF06B6D4), 5),
+                _buildToolCard(Icons.quiz_rounded, l10n.quiz, l10n.generateQuiz,
+                    const Color(0xFFF59E0B), 6),
+                _buildToolCard(Icons.summarize_rounded, l10n.summary,
+                    l10n.summarizeFile, const Color(0xFF14B8A6), 7),
+                _buildToolCard(Icons.bar_chart_rounded, l10n.progress,
+                    l10n.trackProgress, const Color(0xFF6366F1), 8),
               ],
             ),
           ],
@@ -266,14 +274,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildToolCard(
       IconData icon, String title, String subtitle, Color color, int index) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => _screens[index - 1]),
         );
+        _loadData(); // إعادة تحميل البيانات بعد العودة من الشاشة
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(15),
@@ -283,14 +292,16 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, color: color, size: 20),
-            const SizedBox(height: 2),
+            const SizedBox(height: 4),
             Text(
               title,
               textAlign: TextAlign.center,
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 11, fontWeight: FontWeight.bold, height: 1.2),
             ),
+            const SizedBox(height: 1),
             Text(
               subtitle,
               textAlign: TextAlign.center,

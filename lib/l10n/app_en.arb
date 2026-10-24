@@ -180,5 +180,31 @@
   "reminderEveryHourOn": "You'll be reminded every hour to drink water 🔔",
   "notificationsOff": "Notifications are off 🔕",
   "cupButtonLabel": "Cup",
-  "addCupButton": "Add a cup of water"
+  "addCupButton": "Add a cup of water",
+  "quiz": "Quiz",
+  "generateQuiz": "Generate quiz",
+  "summary": "Summary",
+  "summarizeFile": "Summarize file",
+  "quizScreenTitle": "Generate quiz from file",
+  "choosePdfFile": "Choose PDF file",
+  "noReadableText": "No readable text found in the file",
+  "errorOccurred": "Error: {error}",
+  "@errorOccurred": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "summaryResultTitle": "File Summary",
+  "progress": "Progress",
+  "trackProgress": "Your stats",
+  "quizzesLabel": "Quizzez",
+  "correctAnswersLabel": "Correct answers",
+  "averageLabel": "Average",
+  "noQuizzesYet": "You haven't taken any quiz yet",
+   "yourProgress": "Your Progress",
+   "quizResultTitle": "Quiz Result",
+   "exit": "Exit",
+   "submitQuiz": "submit Quiz",
+   "savedSummaries": "Saved Summaries",
+   "noSummariesYet": " no saved summaries yet"
 }

@@ -2,7 +2,7 @@
   "@@locale": "ar",
   "appTitle": "Cogniq",
   "settingsTitle": "الإعدادات ⚙",
-  "yourInfo": "👤 معلوماتك",
+  "yourInfo": "👤 بياناتك",
   "name": "الاسم",
   "studyYear": "السنة الدراسية",
   "waterGoalTitle": "💧 هدف الماء اليومي",
@@ -26,11 +26,11 @@
   "arabic": "العربية",
   "english": "English",
   "saveSettings": "حفظ الإعدادات",
-  "settingsSaved": "✅ تم حفظ الإعدادات!",
+  "settingsSaved": "✅ تم حفظ الإعدادات بنجاح",
   "resetApp": "إعادة تعيين التطبيق",
-  "resetConfirmMessage": "هيتمسح كل البيانات وهترجع لشاشة التسجيل!\nمتأكد؟",
-  "no": "لأ",
-  "yesDelete": "أيوه، امسح",
+  "resetConfirmMessage": "سيتم مسح جميع البيانات والعودة إلى شاشة التسجيل\nهل أنت متأكد؟",
+  "no": "لا",
+  "yesDelete": "نعم، احذف",
   "version": "الإصدار {version}",
   "@version": {
     "placeholders": {
@@ -49,11 +49,11 @@
   "pomodoro": "بومودورو",
   "focus": "تركيز",
   "notes": "ملاحظات",
-  "recordThoughts": "سجل أفكارك",
+  "recordThoughts": "سجّل أفكارك",
   "game": "لعبة",
-  "memory": "ذاكرة",
+  "memory": "الذاكرة",
   "water": "ماء",
-  "tracker": "متتبع",
+  "tracker": "متابعة",
   "monday": "الاثنين",
   "tuesday": "الثلاثاء",
   "wednesday": "الأربعاء",
@@ -73,31 +73,31 @@
   "october": "أكتوبر",
   "november": "نوفمبر",
   "december": "ديسمبر",
-"newExam": "امتحان جديد 🗓️",
+  "newExam": "امتحان جديد 🗓️",
   "subjectName": "اسم المادة",
-  "chooseDate": "اختر التاريخ",
-  "chooseColor": "اختر لون:",
+  "chooseDate": "اختيار التاريخ",
+  "chooseColor": "اختيار اللون:",
   "cancel": "إلغاء",
   "save": "حفظ",
   "examScheduleTitle": "جدول الامتحانات 🗓️",
-  "noExamsYet": "مفيش امتحانات لسه!\nاضغط + عشان تضيف",
+  "noExamsYet": "لا توجد امتحانات بعد\nاضغط على + لإضافة امتحان",
   "examEnded": "انتهى",
-  "examToday": "اليوم!",
-  "daysLeft": "{days} يوم",
+  "examToday": "اليوم",
+  "daysLeft": "{days} يوم متبقٍ",
   "@daysLeft": {
     "placeholders": {
       "days": {"type": "int"}
     }
   },
   "pomodoroTitle": "بومودورو ⏱️",
-  "fourSessionsDone": "🎉 أكملت 4 جلسات! وقت راحة طويلة ☕",
-  "sessionDoneShortBreak": "✅ جلسة مكتملة! خد راحة قصيرة 😊",
-  "breakDoneFocusTime": "🎯 انتهت الراحة! وقت التركيز",
+  "fourSessionsDone": "🎉 لقد أكملت أربع جلسات، حان وقت الاستراحة الطويلة ☕",
+  "sessionDoneShortBreak": "✅ اكتملت الجلسة، خذ استراحة قصيرة 😊",
+  "breakDoneFocusTime": "🎯 انتهت الاستراحة، حان وقت التركيز",
   "ok": "حسناً",
-  "longBreakLabel": "🛋️ راحة طويلة",
-  "breakTimeLabel": "☕ وقت الراحة",
+  "longBreakLabel": "🛋️ استراحة طويلة",
+  "breakTimeLabel": "☕ وقت الاستراحة",
   "focusTimeLabel": "🎯 وقت التركيز",
-  "sessionsCompleted": "جلسة {count} مكتملة",
+  "sessionsCompleted": "اكتملت الجلسة رقم {count}",
   "@sessionsCompleted": {
     "placeholders": {
       "count": {"type": "int"}
@@ -105,7 +105,7 @@
   },
   "pause": "إيقاف مؤقت",
   "start": "ابدأ",
-  "pomodoroInfo": "{focusMin} دقيقة تركيز ← {breakMin} دقائق راحة\nبعد 4 جلسات: {longBreakMin} دقيقة راحة طويلة 🛋️",
+  "pomodoroInfo": "{focusMin} دقيقة تركيز ← {breakMin} دقائق استراحة\nبعد أربع جلسات: {longBreakMin} دقيقة استراحة طويلة 🛋️",
   "@pomodoroInfo": {
     "placeholders": {
       "focusMin": {"type": "int"},
@@ -121,7 +121,7 @@
   "saveNote": "حفظ الملاحظة",
   "generalSubject": "عام",
   "notesTitle": "الملاحظات 📝",
-  "noNotesYet": "مفيش ملاحظات لسه!\nاضغط + عشان تضيف",
+  "noNotesYet": "لا توجد ملاحظات بعد\nاضغط على + لإضافة ملاحظة",
   "memoryGameTitle": "لعبة الذاكرة 🧠",
   "replay": "إعادة اللعب",
   "level": "المستوى: ",
@@ -129,22 +129,22 @@
   "hard": "صعب",
   "timeLabel": "⏱️ الوقت",
   "attemptsLabel": "🎯 المحاولات",
-  "matchedLabel": "✅ المطابق",
+  "matchedLabel": "✅ المتطابق",
   "wellDone": "🏆 أحسنت!",
-  "gameFinishedStats": "إنهيت اللعبة في {moves} محاولة\nوفي {time}",
+  "gameFinishedStats": "أنهيت اللعبة في {moves} محاولة\nخلال {time}",
   "@gameFinishedStats": {
     "placeholders": {
       "moves": {"type": "int"},
       "time": {"type": "String"}
     }
   },
-  "playAgain": "العب مرة ثانية 🔄",
-  "waterTrackerTitle": "متتبع الماء 💧",
+  "playAgain": "العب مرة أخرى 🔄",
+  "waterTrackerTitle": "متابعة شرب الماء 💧",
   "settingsTooltip": "الإعدادات",
   "resetTooltip": "إعادة تعيين",
   "reminderTitle": "💧 تذكير!",
-  "reminderBody": "لا تنسى تشرب الماء!\nجسمك يحتاجك 💪",
-  "drankCup": "شربت كوب! ✅",
+  "reminderBody": "لا تنسَ شرب الماء\nجسمك بحاجة إليك 💪",
+  "drankCup": "تم شرب كوب ✅",
   "later": "لاحقاً",
   "settingsDialogTitle": "الإعدادات ⚙️",
   "notificationsSection": "🔔 الإشعارات",
@@ -155,14 +155,14 @@
   "normal": "عادي",
   "large": "كبير",
   "languageSection": "🌍 اللغة",
-  "aboutSection": "ℹ️ عن التطبيق",
-  "appDescription": "تطبيق مساعد ذكي للطلاب يساعدهم على تنظيم دراستهم وتتبع امتحاناتهم وتحسين تركيزهم من خلال تقنية البومودورو ولعبة الذاكرة وتتبع شرب الماء.",
-  "developerLabel": "👩‍💻 المطور",
+  "aboutSection": "ℹ️ حول التطبيق",
+  "appDescription": "تطبيق مساعد ذكي للطلاب يساعدهم على تنظيم دراستهم، ومتابعة امتحاناتهم، وتحسين تركيزهم من خلال تقنية البومودورو، ولعبة الذاكرة، ومتابعة شرب الماء.",
+  "developerLabel": "👩‍💻 المطورة",
   "typeLabel": "📱 النوع",
   "typeValue": "تطبيق تعليمي",
   "techLabel": "🛠️ التقنية",
   "yearLabel": "📅 السنة",
-  "okDone": "حسنا ✅",
+  "okDone": "حسناً ✅",
   "cupsUnit": "كوب",
   "mlOfTotal": "{ml} مل / 2000 مل",
   "@mlOfTotal": {
@@ -170,8 +170,8 @@
       "ml": {"type": "int"}
     }
   },
-  "goalReached": "🎉 أحسنت! وصلت لهدفك اليومي!",
-  "cupsLeftForGoal": "باقي {left} كوب لتكملة الـ 2 لتر 💪",
+  "goalReached": "🎉 أحسنت! لقد بلغت هدفك اليومي",
+  "cupsLeftForGoal": "تبقّى {left} كوب لإكمال اللترين 💪",
   "@cupsLeftForGoal": {
     "placeholders": {
       "left": {"type": "int"}
@@ -180,5 +180,31 @@
   "reminderEveryHourOn": "سيتم تذكيرك كل ساعة بشرب الماء 🔔",
   "notificationsOff": "الإشعارات متوقفة 🔕",
   "cupButtonLabel": "كوب",
-  "addCupButton": "أضف كوب ماء"
+  "addCupButton": "إضافة كوب ماء",
+  "quiz": "اختبار",
+  "generateQuiz": "توليد اختبار",
+  "summary": "تلخيص",
+  "summarizeFile": "تلخيص الملف",
+  "quizScreenTitle": "توليد اختبار من ملف",
+  "choosePdfFile": "اختيار ملف PDF",
+  "noReadableText": "لم يُعثر على نص قابل للقراءة في الملف",
+  "errorOccurred": "حدث خطأ: {error}",
+  "@errorOccurred": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "summaryResultTitle": "ملخص الملف",
+  "progress": "تقدمك",
+  "trackProgress": "إحصائياتك",
+  "quizzesLabel": "الاختبارات",
+  "correctAnswersLabel": "الإجابات الصحيحة",
+  "averageLabel": "المعدل",
+  "noQuizzesYet": "لم تقم بأي اختبار بعد",
+  "yourProgress": "تقدمك",
+  "quizResultTitle": "نتيجة الاختبار",
+  "exit": "خروج",
+  "submitQuiz": "إرسال الاختبار",
+  "savedSummaries": "التلخيصات المحفوظة",
+  "noSummariesYet": "لا توجد تلخيصات  محفوظة بعد"
 }

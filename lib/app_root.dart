@@ -1,10 +1,13 @@
+import 'screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:cogniq/l10n/app_localizations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'core/theme/app_theme.dart';
-import 'screens/onboarding/onboarding_screen.dart';
+import 'screens/auth/register_screen.dart';
 import 'screens/home/home_screen.dart';
+import 'services/auth_service.dart';
 
 class CogniqApp extends StatefulWidget {
   final bool isRegistered;
@@ -18,7 +21,6 @@ class CogniqApp extends StatefulWidget {
     required this.isArabic,
   });
 
-  // عشان نقدر نغير الثيم واللغة من أي شاشة
   static _CogniqAppState? of(BuildContext context) =>
       context.findAncestorStateOfType<_CogniqAppState>();
 
@@ -37,7 +39,6 @@ class _CogniqAppState extends State<CogniqApp> {
     _isArabic = widget.isArabic;
   }
 
-  // دالة تغيير الثيم
   Future<void> toggleTheme() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -46,7 +47,6 @@ class _CogniqAppState extends State<CogniqApp> {
     await prefs.setBool('is_dark_mode', _isDark);
   }
 
-  // دالة تغيير اللغة
   Future<void> setArabic(bool value) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -69,7 +69,7 @@ class _CogniqAppState extends State<CogniqApp> {
       locale: Locale(_isArabic ? 'ar' : 'en'),
       routes: {
         '/home': (context) => const HomeScreen(),
-        '/onboarding': (context) => const OnboardingScreen(),
+        '/register': (context) => const RegisterScreen(),
       },
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -78,10 +78,23 @@ class _CogniqAppState extends State<CogniqApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('ar', 'SA'), // العربية
-        Locale('en', 'US'), // الإنجليزية
+        Locale('ar', 'SA'),
+        Locale('en', 'US'),
       ],
-      home: widget.isRegistered ? const HomeScreen() : const OnboardingScreen(),
+      home: StreamBuilder<User?>(
+        stream: AuthService.authStateChanges,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          if (snapshot.hasData) {
+            return const HomeScreen();
+          }
+          return const LoginScreen();
+        },
+      ),
     );
   }
 }
